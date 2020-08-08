@@ -121,16 +121,15 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nJN-th-c5K" userLabel="Timer View">
                                         <rect key="frame" x="0.0" y="571.5" width="374" height="246.5"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hYB-9m-49k" userLabel="Countdown Label">
-                                                <rect key="frame" x="141.5" y="33.5" width="91" height="179.5"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="150"/>
-                                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
+                                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.90000000000000002" translatesAutoresizingMaskIntoConstraints="NO" id="idH-dK-30G">
+                                                <rect key="frame" x="0.0" y="122" width="374" height="2"/>
+                                                <color key="progressTintColor" red="0.0" green="0.97680455450000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </progressView>
                                         </subviews>
                                         <constraints>
-                                            <constraint firstItem="hYB-9m-49k" firstAttribute="centerX" secondItem="nJN-th-c5K" secondAttribute="centerX" id="622-zP-aop"/>
-                                            <constraint firstItem="hYB-9m-49k" firstAttribute="centerY" secondItem="nJN-th-c5K" secondAttribute="centerY" id="tea-eT-mp8"/>
+                                            <constraint firstItem="idH-dK-30G" firstAttribute="centerY" secondItem="nJN-th-c5K" secondAttribute="centerY" id="6f3-n0-SqL"/>
+                                            <constraint firstItem="idH-dK-30G" firstAttribute="leading" secondItem="nJN-th-c5K" secondAttribute="leading" id="ozc-Xn-Cs4"/>
+                                            <constraint firstAttribute="trailing" secondItem="idH-dK-30G" secondAttribute="trailing" id="vpW-kC-xZ5"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -146,7 +145,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <outlet property="countdownLabel" destination="hYB-9m-49k" id="3v0-ZQ-aKh"/>
+                        <outlet property="progressView" destination="idH-dK-30G" id="93u-7m-ljb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

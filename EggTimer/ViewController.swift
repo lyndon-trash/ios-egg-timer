@@ -21,8 +21,9 @@ class ViewController: UIViewController {
     
     var deadline: Date?
     var player: AVAudioPlayer?
+    var timerStart = 1000
     
-    @IBOutlet weak var countdownLabel: UILabel!
+    @IBOutlet weak var progressView: UIProgressView!
     
     @IBAction func selectHardness(_ sender: UIButton) {
         
@@ -32,6 +33,7 @@ class ViewController: UIViewController {
         case "Soft", "Medium", "Hard":
             print("\(maybeTitle!) : \(eggTimes[maybeTitle!]!)")
             deadline = Date(timeIntervalSinceNow: eggTimes[maybeTitle!]!)
+            timerStart = Int(deadline!.timeIntervalSinceNow)
             countDown()
         default:
             print("Error")
@@ -42,19 +44,21 @@ class ViewController: UIViewController {
         
         if let d = deadline {
             let remaining = Int(d.timeIntervalSinceNow)
-            countdownLabel.text = "\(remaining)"
+            
+            progressView.progress = calculateProgress(start: timerStart, current: remaining)
             
             switch remaining {
             case 1...startAlarm:
-                countdownLabel.textColor = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
+                progressView.progressTintColor = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
                 soundAlarm()
             default:
-                countdownLabel.textColor = #colorLiteral(red: 0.3333333433, green: 0.3333333433, blue: 0.3333333433, alpha: 1)
+                progressView.progressTintColor = #colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1)
             }
             
             if (d < Date()) {
                 deadline = nil
-                countdownLabel.text = "0"
+                progressView.progressTintColor = #colorLiteral(red: 0, green: 0.9768045545, blue: 0, alpha: 1)
+                progressView.progress = 1.0
                 player?.stop()
             }
             
@@ -71,7 +75,11 @@ class ViewController: UIViewController {
             self.player = try! AVAudioPlayer(contentsOf: url!, fileTypeHint: AVFileType.mp3.rawValue)
             player?.play()
         }
+    }
+    
+    func calculateProgress(start: Int, current: Int) -> Float {
         
+        return Float(current) / Float(start)
     }
     
 }
