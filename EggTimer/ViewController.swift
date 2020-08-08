@@ -10,20 +10,21 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    let softTime = 5
-    let mediumTime = 7
-    let hardTime = 12
+    let eggTimes = [
+        "Soft": 5,
+        "Medium": 7,
+        "Hard": 12
+    ]
     
     @IBAction func selectHardness(_ sender: UIButton) {
-        switch sender.currentTitle {
-        case "Hard":
-            print("Hard \(hardTime)")
-        case "Medium":
-            print("Medium \(mediumTime)")
-        case "Soft":
-            print("Soft \(softTime)")
+        
+        let maybeTitle = sender.currentTitle
+        
+        switch maybeTitle {
+        case "Soft", "Medium", "Hard":
+            print("\(maybeTitle!) : \(eggTimes[maybeTitle!]!)")
         default:
-            print("This should not happen")
+            print("Error")
         }
     }
     
