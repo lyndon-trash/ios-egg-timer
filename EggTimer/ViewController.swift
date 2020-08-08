@@ -39,6 +39,7 @@ class ViewController: UIViewController {
     }
     
     func countDown() {
+        
         if let d = deadline {
             let remaining = Int(d.timeIntervalSinceNow)
             countdownLabel.text = "\(remaining)"
@@ -64,6 +65,7 @@ class ViewController: UIViewController {
     }
     
     func soundAlarm() {
+        
         if (!(player?.isPlaying ?? false)) {
             let url = Bundle.main.url(forResource: "alarm_sound", withExtension: "mp3")
             self.player = try! AVAudioPlayer(contentsOf: url!, fileTypeHint: AVFileType.mp3.rawValue)
