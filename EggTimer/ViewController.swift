@@ -11,6 +11,8 @@ import AVFoundation
 
 class ViewController: UIViewController {
     
+    @IBOutlet weak var progressView: UIProgressView!
+
     let startAlarm = 15
     
     let eggTimes: [String : TimeInterval] = [
@@ -23,7 +25,6 @@ class ViewController: UIViewController {
     var player: AVAudioPlayer?
     var timerStart = 1000
     
-    @IBOutlet weak var progressView: UIProgressView!
     
     @IBAction func selectHardness(_ sender: UIButton) {
         
@@ -40,7 +41,7 @@ class ViewController: UIViewController {
         }
     }
     
-    func countDown() {
+    private func countDown() {
         
         if let d = deadline {
             let remaining = Int(d.timeIntervalSinceNow)
@@ -68,7 +69,7 @@ class ViewController: UIViewController {
         }
     }
     
-    func soundAlarm() {
+    private func soundAlarm() {
         
         if (!(player?.isPlaying ?? false)) {
             let url = Bundle.main.url(forResource: "alarm_sound", withExtension: "mp3")
@@ -77,7 +78,7 @@ class ViewController: UIViewController {
         }
     }
     
-    func calculateProgress(start: Int, current: Int) -> Float {
+    private func calculateProgress(start: Int, current: Int) -> Float {
         
         return Float(current) / Float(start)
     }
